@@ -1,20 +1,22 @@
 .wrapper {
     border-radius: 4px;
     color: rgba(0, 0, 0, 1);
+    background: none;
     font-weight: 700;
     font-size: 16px;
     min-width: 100px;
     padding: 6px 16px;
-    display: flex;
-    text-align: center;
-    align-items: center;
-    justify-content: center;
+
     cursor: pointer;
     border: 1px solid transparent;
     height: 36px;
     user-select: none;
     + .wrapper {
         margin-left: 16px;
+        display: flex;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
     }
 
     &.disable {
@@ -64,5 +66,5 @@
 
 .icon + .title,
 .title + .icon {
-    margin-left: 7px;
+    margin-left: 8px;
 }

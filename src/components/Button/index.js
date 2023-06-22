@@ -14,7 +14,6 @@ function Button({
     large,
     disable,
     borderRadius,
-    className,
     leftIcon,
     rightIcon,
     children,
@@ -30,7 +29,7 @@ function Button({
     if (to) {
         props.to = to;
         Comp = Link;
-    } else {
+    } else if (href) {
         props.href = href;
         Comp = 'a';
     }

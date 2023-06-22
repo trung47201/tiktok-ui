@@ -2,8 +2,11 @@ import classNames from 'classnames/bind';
 import images from '~/assets/images';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
+    faCircleQuestion,
     faCircleXmark,
+    faEarthAsia,
     faEllipsisVertical,
+    faKeyboard,
     faMagnifyingGlass,
     faPlus,
     faSpinner,
@@ -16,19 +19,59 @@ import TippyTitle from '@tippyjs/react';
 import { useEffect, useState } from 'react';
 import AccountItem from '~/components/AccountItem';
 import 'tippy.js/dist/tippy.css';
-
+import Menu from '~/components/Popper/Menu';
 import Button from '~/components/Button';
 
 const cx = classNames.bind(styles);
+
+const MENU_ITEMS = [
+    {
+        icon: <FontAwesomeIcon icon={faEarthAsia} />,
+        title: 'English',
+        children: {
+            title: 'Language',
+            data: [
+                {
+                    type: 'language',
+                    code: 'en',
+                    title: 'English',
+                },
+                {
+                    type: 'language',
+                    code: 'vn',
+                    title: 'Tiếng Việt',
+                },
+            ],
+        },
+    },
+    {
+        icon: <FontAwesomeIcon icon={faCircleQuestion} />,
+        title: 'Feedback and help',
+        to: '/feedback',
+    },
+    {
+        icon: <FontAwesomeIcon icon={faKeyboard} />,
+        title: 'Keyboard shortcuts',
+    },
+];
 
 function Header() {
     const [searchResult, setSearchResult] = useState([]);
 
     useEffect(() => {
+        //console.log(searchResult);
         setTimeout(() => {
             setSearchResult([1, 2, 2]);
         }, 2000);
     }, []);
+
+    const handleMenuChange = (items) => {
+        switch (items.type) {
+            case 'language':
+                console.log(items);
+                break;
+        }
+    };
 
     return (
         <header className={cx('wrapper')}>
@@ -39,7 +82,6 @@ function Header() {
                 <div>
                     <Tippy
                         interactive
-                        visible={searchResult.length > 0}
                         render={(attrs) => (
                             <PopperWrapper>
                                 <div className={cx('search-box')} tabIndex="-1" {...attrs}>
@@ -93,9 +135,12 @@ function Header() {
                         Upload
                     </Button>
                     <Button primary>Log in</Button>
-                    <Button className={cx('menu')}>
-                        <FontAwesomeIcon icon={faEllipsisVertical} />
-                    </Button>
+
+                    <Menu items={MENU_ITEMS} onChange={handleMenuChange}>
+                        <button className={cx('menu')}>
+                            <FontAwesomeIcon icon={faEllipsisVertical} />
+                        </button>
+                    </Menu>
                 </div>
             </div>
         </header>
