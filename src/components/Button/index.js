@@ -18,6 +18,7 @@ function Button({
     rightIcon,
     children,
     onClick,
+    seperate,
     ...passProps
 }) {
     let Comp = 'button';
@@ -52,6 +53,7 @@ function Button({
         borderRadius,
         leftIcon,
         rightIcon,
+        seperate,
     });
 
     return (
