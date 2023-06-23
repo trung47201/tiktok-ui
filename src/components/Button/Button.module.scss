@@ -6,11 +6,11 @@
     font-size: 16px;
     min-width: 100px;
     padding: 6px 16px;
-
     cursor: pointer;
     border: 1px solid transparent;
     height: 36px;
     user-select: none;
+    font-family: var(--font-main);
     + .wrapper {
         margin-left: 16px;
         display: flex;

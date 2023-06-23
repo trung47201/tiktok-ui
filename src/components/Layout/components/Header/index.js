@@ -26,7 +26,7 @@ import Menu from '~/components/Popper/Menu';
 import Button from '~/components/Button';
 import { faBookmark, faMessage, faPaperPlane, faUser } from '@fortawesome/free-regular-svg-icons';
 import { faTiktok } from '@fortawesome/free-brands-svg-icons';
-
+import Image from '~/components/Image';
 const cx = classNames.bind(styles);
 
 const MENU_ITEMS = [
@@ -171,27 +171,28 @@ function Header() {
                     {currentUser ? (
                         <>
                             <TippyTitle content="Upload video">
-                                <buton className={cx('actions-icon')}>
+                                <button className={cx('actions-icon')}>
                                     <FontAwesomeIcon icon={faCloudArrowUp} />
-                                </buton>
+                                </button>
                             </TippyTitle>
                             <TippyTitle content="Message">
-                                <buton className={cx('actions-icon')}>
+                                <button className={cx('actions-icon')}>
                                     <FontAwesomeIcon icon={faPaperPlane} />
-                                </buton>
+                                </button>
                             </TippyTitle>
                             <TippyTitle content="Inbox">
-                                <buton className={cx('actions-icon')}>
+                                <button className={cx('actions-icon')}>
                                     <FontAwesomeIcon icon={faMessage} />
-                                </buton>
+                                </button>
                             </TippyTitle>
 
                             <Menu items={MENU_WITH_USER} onChange={handleMenuChange}>
                                 <button className={cx('menu')}>
-                                    <img
+                                    <Image
                                         className={cx('avatar')}
-                                        src="https://p16-sign-va.tiktokcdn.com/tos-maliva-avt-0068/a27df9b7561521f9437f6906022e037f~c5_100x100.jpeg?x-expires=1687672800&x-signature=WxZit0cagnSROZ6LbTIB%2B5cxKd0%3D"
+                                        src=""
                                         alt="avatar-menu"
+                                        fallback="https://scontent.fhan14-2.fna.fbcdn.net/v/t39.30808-1/331126725_1598030793973951_5480335199231314143_n.jpg?stp=dst-jpg_p100x100&_nc_cat=100&ccb=1-7&_nc_sid=7206a8&_nc_ohc=zIg97s_zelIAX9qaTEH&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.fhan14-2.fna&oh=00_AfCzD40BB1s7fcAIMe_SYbRiXdjETPDeJEwL863TssFf5w&oe=649A7F5E"
                                     />
                                 </button>
                             </Menu>
