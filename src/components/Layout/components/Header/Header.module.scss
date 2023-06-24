@@ -19,122 +19,6 @@
     cursor: pointer;
 }
 
-.search-form {
-    width: 360px;
-    height: 46px;
-    background: rgba(22, 24, 35, 0.06);
-    border-radius: 23px;
-    display: flex;
-    text-align: center;
-    align-items: center;
-    position: relative;
-
-    input {
-        width: 100%;
-        background: transparent;
-        color: rgb(22, 24, 35);
-        border: 0;
-        font-size: 1.6rem;
-        height: 100%;
-        caret-color: var(--primary);
-        padding: 0 0 0 20px;
-    }
-
-    &:hover .search-btn {
-        background-color: rgba(22, 24, 35, 0.04);
-        color: rgba(22, 24, 35, 0.75);
-    }
-
-    &:hover input {
-        border: 1px solid rgba(22, 24, 35, 0.3);
-        border-radius: 50px;
-    }
-}
-
-.search {
-    &:focus {
-        border: 1px solid rgba(22, 24, 35, 0.3);
-        border-radius: 50px;
-    }
-}
-.search-clear {
-    height: 96%;
-}
-.search-clear,
-.loading {
-    width: 36px;
-    position: absolute;
-    right: 59px;
-    color: rgba(22, 24, 35, 0.34);
-}
-.search-btn {
-    position: absolute;
-    right: 1px;
-    width: 57px;
-    height: 96%;
-    border-radius: 0 23px 23px 0px;
-    cursor: pointer;
-    border-left: 1px solid lightgray;
-    font-size: 2rem;
-    color: rgba(22, 24, 35, 0.34);
-}
-
-.search-box {
-    width: 360px;
-    overflow-y: scroll;
-    max-height: min((100vh - 96px) - 60px, 760px);
-    padding-top: 10px;
-}
-
-.search-box::-webkit-scrollbar {
-    width: 10px;
-}
-
-/* Track */
-.search-box::-webkit-scrollbar-track {
-    border-radius: 7px;
-}
-
-/* Handle */
-.search-box::-webkit-scrollbar-thumb {
-    background: rgba(22, 24, 35, 0.06);
-    border-radius: 7px;
-}
-
-.list-key-search li {
-    width: 100%;
-    list-style-type: none;
-    padding: 9px 16px;
-    cursor: pointer;
-    display: flex;
-    -webkit-box-align: center;
-    align-items: center;
-
-    &:hover {
-        background: rgba(22, 24, 35, 0.03);
-    }
-}
-
-.list-key-search h4 {
-    font-family: var(--font-main);
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 24px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    padding-right: 12px;
-    padding-left: 8px;
-}
-
-.search-box-header {
-    font-family: var(--font-main);
-    font-weight: 600;
-    font-size: 14px;
-    line-height: 22px;
-    color: rgba(22, 24, 35, 0.75);
-    padding: 5px 12px 3px;
-}
 .wrapper-normal-info {
     width: 16px;
     height: 16px;
@@ -187,4 +71,27 @@
     width: 36px;
     height: 36px;
     border-radius: 40px;
+}
+
+// inbox
+.box-msg {
+    position: relative;
+}
+
+.box-noti {
+    position: absolute;
+    background: red;
+    top: -2px;
+    right: 0px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1px 5px;
+}
+
+.count-noti {
+    font-size: 13px;
+    color: white;
+    font-weight: 600;
 }

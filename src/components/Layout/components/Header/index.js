@@ -4,29 +4,23 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faArrowRightToBracket,
     faCircleQuestion,
-    faCircleXmark,
     faCloudArrowUp,
     faEarthAsia,
     faEllipsisVertical,
     faGear,
     faKeyboard,
-    faMagnifyingGlass,
     faPlus,
-    faSpinner,
 } from '@fortawesome/free-solid-svg-icons';
-import { Wrapper as PopperWrapper } from '~/components/Popper';
 
 import styles from './Header.module.scss';
-import Tippy from '@tippyjs/react/headless';
 import TippyTitle from '@tippyjs/react';
-import { useEffect, useState } from 'react';
-import AccountItem from '~/components/AccountItem';
 import 'tippy.js/dist/tippy.css';
 import Menu from '~/components/Popper/Menu';
 import Button from '~/components/Button';
 import { faBookmark, faMessage, faPaperPlane, faUser } from '@fortawesome/free-regular-svg-icons';
 import { faTiktok } from '@fortawesome/free-brands-svg-icons';
 import Image from '~/components/Image';
+import Search from '~/components/Layout/components/Search';
 const cx = classNames.bind(styles);
 
 const MENU_ITEMS = [
@@ -93,15 +87,6 @@ const MENU_WITH_USER = [
 const currentUser = true;
 
 function Header() {
-    const [searchResult, setSearchResult] = useState([]);
-
-    useEffect(() => {
-        //console.log(searchResult);
-        setTimeout(() => {
-            setSearchResult([1, 2, 2]);
-        }, 2000);
-    }, []);
-
     const handleMenuChange = (items) => {
         switch (items.type) {
             case 'language':
@@ -117,55 +102,7 @@ function Header() {
                     <img src={images.logo} alt="logo" />
                 </div>
                 <div>
-                    <Tippy
-                        interactive
-                        render={(attrs) => (
-                            <PopperWrapper>
-                                <div className={cx('search-box')} tabIndex="-1" {...attrs}>
-                                    <div className={cx('search-box-header')}>You may like</div>
-                                    <ul className={cx('list-key-search')}>
-                                        <li>
-                                            <img src={images.trending} alt="trending" />
-                                            <h4>HERO TEAM</h4>
-                                        </li>
-                                        <li>
-                                            <img src={images.hot} alt="trending" />
-                                            <h4>HERO TEAM</h4>
-                                        </li>
-                                        <li>
-                                            <img src={images.trending} alt="trending" />
-                                            <h4>HERO TEAM</h4>
-                                        </li>
-                                        <li>
-                                            <div className={cx('wrapper-normal-info')}>
-                                                <div className={cx('normal-info')}></div>
-                                            </div>
-                                            <h4>HERO TEAM</h4>
-                                        </li>
-                                    </ul>
-                                    <div className={cx('search-box-header')}>Accounts</div>
-                                    <ul className={cx('list-account-search')}>
-                                        <AccountItem />
-                                        <AccountItem />
-                                        <AccountItem />
-                                    </ul>
-                                </div>
-                            </PopperWrapper>
-                        )}
-                    >
-                        <div className={cx('search-form')}>
-                            <input className={cx('search')} placeholder="Search" spellCheck="false" />
-                            <button className={cx('search-clear')}>
-                                <FontAwesomeIcon icon={faCircleXmark} />
-                            </button>
-                            <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />
-                            <TippyTitle content="Tìm kiếm">
-                                <button className={cx('search-btn')}>
-                                    <FontAwesomeIcon icon={faMagnifyingGlass} />
-                                </button>
-                            </TippyTitle>
-                        </div>
-                    </Tippy>
+                    <Search />
                 </div>
                 <div className={cx('actions')}>
                     {currentUser ? (
@@ -181,9 +118,14 @@ function Header() {
                                 </button>
                             </TippyTitle>
                             <TippyTitle content="Inbox">
-                                <button className={cx('actions-icon')}>
-                                    <FontAwesomeIcon icon={faMessage} />
-                                </button>
+                                <div className={cx('box-msg')}>
+                                    <button className={cx('actions-icon')}>
+                                        <FontAwesomeIcon icon={faMessage} />
+                                    </button>
+                                    <div className={cx('box-noti')}>
+                                        <span className={cx('count-noti')}>99+</span>
+                                    </div>
+                                </div>
                             </TippyTitle>
 
                             <Menu items={MENU_WITH_USER} onChange={handleMenuChange}>
