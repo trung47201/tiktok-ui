@@ -1,12 +1,18 @@
-import { faCircleXmark, faMagnifyingGlass, faSpinner } from '@fortawesome/free-solid-svg-icons'
+import { useEffect, useRef, useState } from 'react'
+import { useDebounce } from '~/hooks'
+import * as searchService from '~/apiService/searchService'
+
 import { Wrapper as PopperWrapper } from '~/components/Popper'
-import Tippy from '@tippyjs/react/headless'
 import AccountItem from '~/components/AccountItem'
-import images from '~/assets/images'
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCircleXmark, faMagnifyingGlass, faSpinner } from '@fortawesome/free-solid-svg-icons'
+
+import Tippy from '@tippyjs/react/headless'
 import TippyTitle from '@tippyjs/react'
 import 'tippy.js/dist/tippy.css'
-import { useEffect, useRef, useState } from 'react'
+
+import images from '~/assets/images'
 import styles from './Search.module.scss'
 import classNames from 'classnames/bind'
 const cx = classNames.bind(styles)
@@ -18,24 +24,23 @@ function Search() {
     const [state, setState] = useState(true)
     const [loading, setLoading] = useState(false)
 
+    const debounced = useDebounce(txtSearch, 700)
+
     useEffect(() => {
-        if (!txtSearch.trim()) {
+        if (!debounced.trim()) {
             setSearchResult([])
             return
         }
 
-        setLoading(true)
+        const fetchApi = async () => {
+            setLoading(true)
+            const rs = await searchService.search(debounced)
+            setSearchResult(rs)
+            setLoading(false)
+        }
 
-        fetch(`/users/search?q=${encodeURIComponent(txtSearch)}`)
-            .then((res) => res.json())
-            .then((res) => {
-                setSearchResult(res)
-                setLoading(false)
-            })
-            .catch(() => {
-                setLoading(false)
-            })
-    }, [txtSearch])
+        fetchApi()
+    }, [debounced])
 
     const onShowClear = (val) => {
         if (val == ' ') {
@@ -61,18 +66,14 @@ function Search() {
             render={(attrs) => (
                 <PopperWrapper>
                     <div className={cx('search-box')} tabIndex="-1" {...attrs}>
-                        <div className={cx('search-box-header')}>You may like</div>
+                        {/* <div className={cx('search-box-header')}>You may like</div>
                         <ul className={cx('list-key-search')}>
                             <li>
                                 <img src={images.trending} alt="trending" />
                                 <h4>HERO TEAM</h4>
                             </li>
                             <li>
-                                <img src={images.hot} alt="trending" />
-                                <h4>HERO TEAM</h4>
-                            </li>
-                            <li>
-                                <img src={images.trending} alt="trending" />
+                                <img src={images.hot} alt="hot" />
                                 <h4>HERO TEAM</h4>
                             </li>
                             <li>
@@ -81,7 +82,7 @@ function Search() {
                                 </div>
                                 <h4>HERO TEAM</h4>
                             </li>
-                        </ul>
+                        </ul> */}
                         <div className={cx('search-box-header')}>Accounts</div>
                         <ul className={cx('list-account-search')}>
                             {searchResult.map((rs) => (
