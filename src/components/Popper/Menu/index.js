@@ -1,42 +1,44 @@
-import Tippy from '@tippyjs/react/headless';
-import classNames from 'classnames/bind';
-import { Wrapper as PopperWrapper } from '~/components/Popper';
-import MenuItem from './MenuItem';
-import styles from './Menu.module.scss';
-import Header from './Header';
-import { useState } from 'react';
+import Header from './Header'
+import { useState } from 'react'
+import Tippy from '@tippyjs/react/headless'
+import { Wrapper as PopperWrapper } from '~/components/Popper'
+import PropTypes from 'prop-types'
+import classNames from 'classnames/bind'
 
-const cx = classNames.bind(styles);
+import MenuItem from './MenuItem'
+import styles from './Menu.module.scss'
 
-const defaultFn = () => {};
+const cx = classNames.bind(styles)
 
-function Menu({ children, items = [], onChange = defaultFn }) {
-    const [history, setHistory] = useState([{ data: items }]);
+const defaultFn = () => {}
 
-    const current = history[history.length - 1];
+function Menu({ children, items = [], hideOnClick = false, onChange = defaultFn }) {
+    const [history, setHistory] = useState([{ data: items }])
+
+    const current = history[history.length - 1]
 
     const renderItem = () => {
         return current.data.map((item, index) => {
-            const isParent = !!item.children;
+            const isParent = !!item.children
             return (
                 <MenuItem
                     key={index}
                     data={item}
                     onClick={() => {
                         if (isParent) {
-                            setHistory((prev) => [...prev, item.children]);
+                            setHistory((prev) => [...prev, item.children])
                         } else {
-                            onChange(item);
+                            onChange(item)
                         }
                     }}
                 />
-            );
-        });
-    };
+            )
+        })
+    }
 
     const onBack = () => {
-        setHistory((prev) => prev.slice(0, prev.length - 1));
-    };
+        setHistory((prev) => prev.slice(0, prev.length - 1))
+    }
 
     return (
         <Tippy
@@ -44,8 +46,9 @@ function Menu({ children, items = [], onChange = defaultFn }) {
             delay={[0, 700]}
             offset={[10, 0]}
             placement="bottom-end"
+            hideOnClick={hideOnClick}
             render={(attrs) => (
-                <div className={cx('menu-box')}>
+                <div className={cx('menu-box')} tabIndex="-1" {...attrs}>
                     <PopperWrapper>
                         {history.length > 1 && <Header title={current.title} onBack={onBack} />}
                         <div className={cx('wrapper-box')}>{renderItem()}</div>
@@ -53,12 +56,19 @@ function Menu({ children, items = [], onChange = defaultFn }) {
                 </div>
             )}
             onHide={() => {
-                setHistory((prev) => prev.slice(0, 1));
+                setHistory((prev) => prev.slice(0, 1))
             }}
         >
             {children}
         </Tippy>
-    );
+    )
 }
 
-export default Menu;
+Menu.propTypes = {
+    children: PropTypes.node.isRequired,
+    items: PropTypes.array,
+    hideOnClick: PropTypes.func,
+    onChange: PropTypes.func,
+}
+
+export default Menu

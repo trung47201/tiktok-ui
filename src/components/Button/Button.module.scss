@@ -11,6 +11,8 @@
     height: 36px;
     user-select: none;
     font-family: var(--font-main);
+    display: inline-flex;
+
     + .wrapper {
         margin-left: 16px;
         display: flex;

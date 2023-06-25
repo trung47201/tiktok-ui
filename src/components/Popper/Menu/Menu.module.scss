@@ -15,14 +15,15 @@
 }
 
 .wrapper-box {
-    padding: 8px 0;
+    max-height: min(100vh - 96px - 60px, 760px);
+    overflow: auto;
 }
 
 // sub-menu
 .header {
     display: flex;
     position: relative;
-    margin-bottom: -8px;
+    margin-top: -8px;
 }
 
 .back-btn {

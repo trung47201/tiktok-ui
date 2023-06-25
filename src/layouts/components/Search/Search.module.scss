@@ -17,6 +17,8 @@
         height: 100%;
         caret-color: var(--primary);
         padding: 0 0 0 20px;
+        font-size: 16px;
+        font-family: var(--font-main);
     }
 
     input:not(:placeholder-shown) ~ .search-btn {
@@ -66,21 +68,6 @@
     overflow-y: scroll;
     max-height: min((100vh - 96px) - 60px, 760px);
     padding-top: 10px;
-}
-
-.search-box::-webkit-scrollbar {
-    width: 10px;
-}
-
-/* Track */
-.search-box::-webkit-scrollbar-track {
-    border-radius: 7px;
-}
-
-/* Handle */
-.search-box::-webkit-scrollbar-thumb {
-    background: rgba(22, 24, 35, 0.06);
-    border-radius: 7px;
 }
 
 .list-key-search li {

@@ -1,6 +1,3 @@
-import classNames from 'classnames/bind';
-import images from '~/assets/images';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faArrowRightToBracket,
     faCircleQuestion,
@@ -10,18 +7,24 @@ import {
     faGear,
     faKeyboard,
     faPlus,
-} from '@fortawesome/free-solid-svg-icons';
+} from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faBookmark, faMessage, faPaperPlane, faUser } from '@fortawesome/free-regular-svg-icons'
+import { faTiktok } from '@fortawesome/free-brands-svg-icons'
+import { Link } from 'react-router-dom'
+import TippyTitle from '@tippyjs/react'
+import 'tippy.js/dist/tippy.css'
 
-import styles from './Header.module.scss';
-import TippyTitle from '@tippyjs/react';
-import 'tippy.js/dist/tippy.css';
-import Menu from '~/components/Popper/Menu';
-import Button from '~/components/Button';
-import { faBookmark, faMessage, faPaperPlane, faUser } from '@fortawesome/free-regular-svg-icons';
-import { faTiktok } from '@fortawesome/free-brands-svg-icons';
-import Image from '~/components/Image';
-import Search from '~/components/Layout/components/Search';
-const cx = classNames.bind(styles);
+import classNames from 'classnames/bind'
+import images from '~/assets/images'
+import Menu from '~/components/Popper/Menu'
+import Button from '~/components/Button'
+import styles from './Header.module.scss'
+import Image from '~/components/Image'
+import Search from '~/layouts/components/Search'
+import config from '~/config'
+
+const cx = classNames.bind(styles)
 
 const MENU_ITEMS = [
     {
@@ -52,7 +55,7 @@ const MENU_ITEMS = [
         icon: <FontAwesomeIcon icon={faKeyboard} />,
         title: 'Keyboard shortcuts',
     },
-];
+]
 
 const MENU_WITH_USER = [
     {
@@ -82,25 +85,28 @@ const MENU_WITH_USER = [
         to: '/logout',
         separate: true,
     },
-];
+]
 
-const currentUser = true;
+const currentUser = true
 
 function Header() {
     const handleMenuChange = (items) => {
         switch (items.type) {
             case 'language':
-                console.log(items);
-                break;
+                console.log(items)
+                break
+            default:
+                throw new Error('Menu change error')
         }
-    };
+    }
 
     return (
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
-                <div className={cx('logo')}>
+                <Link to={config.routes.home} className={cx('logo')}>
                     <img src={images.logo} alt="logo" />
-                </div>
+                </Link>
+
                 <div>
                     <Search />
                 </div>
@@ -156,7 +162,7 @@ function Header() {
                 </div>
             </div>
         </header>
-    );
+    )
 }
 
-export default Header;
+export default Header

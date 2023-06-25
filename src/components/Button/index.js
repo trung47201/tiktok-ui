@@ -1,8 +1,10 @@
-import styles from './Button.module.scss';
-import classNames from 'classnames/bind';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types'
 
-const cx = classNames.bind(styles);
+import styles from './Button.module.scss'
+import classNames from 'classnames/bind'
+
+const cx = classNames.bind(styles)
 
 function Button({
     to,
@@ -21,26 +23,26 @@ function Button({
     seperate,
     ...passProps
 }) {
-    let Comp = 'button';
+    let Comp = 'button'
     const props = {
         onClick,
         ...passProps,
-    };
+    }
 
     if (to) {
-        props.to = to;
-        Comp = Link;
+        props.to = to
+        Comp = Link
     } else if (href) {
-        props.href = href;
-        Comp = 'a';
+        props.href = href
+        Comp = 'a'
     }
 
     if (disable) {
         Object.keys(props).forEach((key) => {
             if (key.startsWith('on') && typeof props[key] === 'function') {
-                delete props[key];
+                delete props[key]
             }
-        });
+        })
     }
 
     const classes = cx('wrapper', {
@@ -54,7 +56,7 @@ function Button({
         leftIcon,
         rightIcon,
         seperate,
-    });
+    })
 
     return (
         <Comp className={classes} {...props}>
@@ -62,7 +64,24 @@ function Button({
             <span className={cx('title')}>{children}</span>
             {rightIcon && <span className={cx('icon')}>{rightIcon}</span>}
         </Comp>
-    );
+    )
 }
 
-export default Button;
+Button.propTypes = {
+    to: PropTypes.string,
+    href: PropTypes.string,
+    primary: PropTypes.bool,
+    outline: PropTypes.bool,
+    outlinePrimary: PropTypes.bool,
+    small: PropTypes.bool,
+    large: PropTypes.bool,
+    disable: PropTypes.bool,
+    borderRadius: PropTypes.string,
+    leftIcon: PropTypes.object,
+    rightIcon: PropTypes.node,
+    children: PropTypes.node.isRequired,
+    onClick: PropTypes.func,
+    seperate: PropTypes.bool,
+}
+
+export default Button

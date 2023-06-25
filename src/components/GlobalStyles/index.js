@@ -1,6 +1,13 @@
-import './GlobalStyles.scss';
+import PropTypes from 'prop-types'
+import React from 'react'
+
+import './GlobalStyles.scss'
 
 function GlobalStyles({ children }) {
-    return children;
+    return React.Children.only(children)
 }
-export default GlobalStyles;
+
+GlobalStyles.propTypes = {
+    children: PropTypes.node.isRequired,
+}
+export default GlobalStyles

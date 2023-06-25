@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { useDebounce } from '~/hooks'
-import * as searchService from '~/apiService/searchService'
+import * as searchService from '~/services/searchService'
 
 import { Wrapper as PopperWrapper } from '~/components/Popper'
 import AccountItem from '~/components/AccountItem'
@@ -24,7 +24,7 @@ function Search() {
     const [state, setState] = useState(true)
     const [loading, setLoading] = useState(false)
 
-    const debounced = useDebounce(txtSearch, 700)
+    const debounced = useDebounce(txtSearch, 500)
 
     useEffect(() => {
         if (!debounced.trim()) {
@@ -42,10 +42,13 @@ function Search() {
         fetchApi()
     }, [debounced])
 
-    const onShowClear = (val) => {
-        if (val == ' ') {
+    const onShowClear = (e) => {
+        let val = e.target.value
+
+        if (val === ' ' || val[0] === ' ') {
             val = val.trim()
         }
+
         setShowClear(true)
         setTxtSearch(val)
     }
@@ -101,7 +104,7 @@ function Search() {
                     placeholder="Search"
                     spellCheck="false"
                     value={txtSearch}
-                    onChange={(e) => onShowClear(e.target.value)}
+                    onChange={(e) => onShowClear(e)}
                 />
                 {showClear && !loading && !!txtSearch && (
                     <>
