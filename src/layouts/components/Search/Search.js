@@ -1,13 +1,10 @@
 import { useEffect, useRef, useState } from 'react'
 import { useDebounce } from '~/hooks'
 import * as searchService from '~/services/searchService'
-
 import { Wrapper as PopperWrapper } from '~/components/Popper'
 import AccountItem from '~/components/AccountItem'
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleXmark, faMagnifyingGlass, faSpinner } from '@fortawesome/free-solid-svg-icons'
-
 import Tippy from '@tippyjs/react/headless'
 import TippyTitle from '@tippyjs/react'
 import 'tippy.js/dist/tippy.css'
@@ -15,6 +12,7 @@ import 'tippy.js/dist/tippy.css'
 import images from '~/assets/images'
 import styles from './Search.module.scss'
 import classNames from 'classnames/bind'
+
 const cx = classNames.bind(styles)
 
 function Search() {
@@ -23,38 +21,31 @@ function Search() {
     const [txtSearch, setTxtSearch] = useState('')
     const [state, setState] = useState(true)
     const [loading, setLoading] = useState(false)
-
-    const debounced = useDebounce(txtSearch, 500)
-
+    const debouncedValue = useDebounce(txtSearch, 500)
     useEffect(() => {
-        if (!debounced.trim()) {
+        if (!debouncedValue.trim()) {
             setSearchResult([])
             return
         }
-
         const fetchApi = async () => {
             setLoading(true)
-            const rs = await searchService.search(debounced)
+            const rs = await searchService.search(debouncedValue)
             setSearchResult(rs)
             setLoading(false)
         }
-
         fetchApi()
-    }, [debounced])
+    }, [debouncedValue])
 
     const onShowClear = (e) => {
         let val = e.target.value
-
         if (val === ' ' || val[0] === ' ') {
             val = val.trim()
         }
-
         setShowClear(true)
         setTxtSearch(val)
     }
 
     const inputRef = useRef()
-
     const handleClearInputSearch = () => {
         setTxtSearch('')
         setSearchResult([])
@@ -104,7 +95,7 @@ function Search() {
                     placeholder="Search"
                     spellCheck="false"
                     value={txtSearch}
-                    onChange={(e) => onShowClear(e)}
+                    onChange={onShowClear}
                 />
                 {showClear && !loading && !!txtSearch && (
                     <>
