@@ -7,9 +7,17 @@
     width: var(--default-layout-width);
     display: flex;
     position: relative;
-    top: var(--default-layout-header-height);
+    padding: 20px 0 0 0;
 }
 
 .content {
     flex: 1;
+}
+
+.wrapper-nav-content {
+    position: relative;
+    top: var(--default-layout-header-height);
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }

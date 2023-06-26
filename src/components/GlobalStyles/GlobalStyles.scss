@@ -6,7 +6,8 @@
     // Default layout
     --default-layout-header-height: 60px;
     --default-layout-width: 1150px;
-    --text-color: #333;
+    --text-color: rgba(var(--text-rgb), 1);
+    --text-rgb: 22, 24, 35;
     --white: white;
 }
 
@@ -40,7 +41,7 @@ html *::-webkit-scrollbar {
 
 html *::-webkit-scrollbar-thumb {
     border-radius: 4px;
-    background-color: rgba(22, 24, 35, 0.08);
+    background-color: rgba(var(--text-rgb), 0.08);
 }
 
 html *::-webkit-scrollbar-track {

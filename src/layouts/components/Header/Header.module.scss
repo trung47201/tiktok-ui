@@ -40,7 +40,7 @@
     width: 6px;
     height: 6px;
     border-radius: 50%;
-    background: rgba(22, 24, 35, 0.34);
+    background: rgba(var(--text-rgb), 0.34);
 }
 
 .actions {
