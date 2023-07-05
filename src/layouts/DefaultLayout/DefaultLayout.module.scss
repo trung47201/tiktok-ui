@@ -4,14 +4,16 @@
     align-items: center;
 }
 .container {
-    width: var(--default-layout-width);
+    width: calc(var(--default-layout-width) + 30px);
     display: flex;
     position: relative;
-    padding: 20px 0 0 0;
+    padding: 0 0 0 4px;
 }
 
 .content {
-    flex: 1;
+    position: relative;
+    left: 360px;
+    width: calc(100% - 474px);
 }
 
 .wrapper-nav-content {

@@ -6,12 +6,8 @@ import classNames from 'classnames/bind'
 const cx = classNames.bind(styles)
 
 function MenuItem({ title, to, icon, iconActive }) {
-    const handleActive = (e) => {
-        console.log(e)
-    }
-
     return (
-        <NavLink className={(nav) => cx('menu-item', { active: nav.isActive })} to={to} onClick={handleActive}>
+        <NavLink className={(nav) => cx('menu-item', { active: nav.isActive })} to={to}>
             <span className={cx('icon')}> {icon}</span>
             <span className={cx('icon-active')}> {iconActive}</span>
             <span className={cx('title')}>{title}</span>

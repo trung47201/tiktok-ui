@@ -105,7 +105,7 @@ function Search() {
                     </>
                 )}
                 {loading && <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />}
-                <TippyTitle content="Tìm kiếm">
+                <TippyTitle content="Search">
                     <button className={cx('search-btn')}>
                         <FontAwesomeIcon icon={faMagnifyingGlass} />
                     </button>

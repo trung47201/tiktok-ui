@@ -3,7 +3,7 @@
     font-size: 1.8rem;
     font-weight: 700;
     font-family: var(--font-main);
-    padding: 8px 12px;
+    padding: 8px 8px;
     border-radius: 4px;
     transition: background-color ease-in-out 200ms;
 
@@ -44,4 +44,8 @@
 
 .icon-active {
     display: none;
+}
+
+nav {
+    margin-bottom: 8px;
 }

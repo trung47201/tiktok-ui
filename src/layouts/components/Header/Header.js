@@ -87,7 +87,7 @@ const MENU_WITH_USER = [
     },
 ]
 
-const currentUser = true
+const currentUser = false
 
 function Header() {
     const handleMenuChange = (items) => {
@@ -140,7 +140,7 @@ function Header() {
                                         className={cx('avatar')}
                                         src=""
                                         alt="avatar-menu"
-                                        fallback="https://scontent.fhan14-2.fna.fbcdn.net/v/t39.30808-1/331126725_1598030793973951_5480335199231314143_n.jpg?stp=dst-jpg_p100x100&_nc_cat=100&ccb=1-7&_nc_sid=7206a8&_nc_ohc=zIg97s_zelIAX9qaTEH&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.fhan14-2.fna&oh=00_AfCzD40BB1s7fcAIMe_SYbRiXdjETPDeJEwL863TssFf5w&oe=649A7F5E"
+                                        fallback="https://scontent.fhan14-1.fna.fbcdn.net/v/t39.30808-1/330918075_938928857272899_8861722819551400458_n.jpg?stp=cp0_dst-jpg_p86x86&_nc_cat=101&cb=99be929b-3346023f&ccb=1-7&_nc_sid=dbb9e7&_nc_ohc=rzroAGzS-28AX_jHKUz&_nc_ht=scontent.fhan14-1.fna&oh=00_AfDmokcdhIZJFBWYthXAXlo5cvG0I4DsRKi_OfrF-PTEaw&oe=64A0C612"
                                     />
                                 </button>
                             </Menu>

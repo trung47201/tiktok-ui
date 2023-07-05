@@ -21,6 +21,9 @@ function Button({
     children,
     onClick,
     seperate,
+    follow,
+    followSmall,
+    following,
     ...passProps
 }) {
     let Comp = 'button'
@@ -56,6 +59,9 @@ function Button({
         leftIcon,
         rightIcon,
         seperate,
+        follow,
+        followSmall,
+        following,
     })
 
     return (
@@ -82,6 +88,9 @@ Button.propTypes = {
     children: PropTypes.node.isRequired,
     onClick: PropTypes.func,
     seperate: PropTypes.bool,
+    follow: PropTypes.bool,
+    followSmall: PropTypes.bool,
+    following: PropTypes.bool,
 }
 
 export default Button

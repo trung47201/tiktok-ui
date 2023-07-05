@@ -4,6 +4,6 @@ const images = {
     hot: require('~/assets/images/hot.svg').default,
     accReal: require('~/assets/images/accountReal.svg').default,
     noImage: require('~/assets/images/noImage.png'),
-};
+}
 
-export default images;
+export default images
